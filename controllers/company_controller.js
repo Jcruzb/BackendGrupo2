@@ -1,4 +1,4 @@
-const { CompanyModel, UserModel } = require("../db");
+const { CompanyModel,  } = require("../db");
 
 const bcrypt = require('bcrypt')
 
@@ -6,6 +6,18 @@ class CompanyController {
   static create(req, res) {
     let data = req.body
        
+        // let payload = req.body
+        const salt = bcrypt.genSaltSync(10)
+        let newPassword = bcrypt.hashSync(data.password, salt, function(err, hash) {});
+
+        // newPassword = newPassword.toString();
+        
+
+        data.password=newPassword
+
+
+
+
         CompanyModel.create(data)
         .then((data) => {
           res.send(data);

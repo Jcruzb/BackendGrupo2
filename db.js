@@ -39,9 +39,9 @@ var CompanySchema = mongoose.Schema({
 
 const CompanyModel = mongoose.model('company', CompanySchema)
 
-const UserModel = mongoose.model('ruc', CompanySchema)
+// const UserModel = mongoose.model('ruc', CompanySchema)
 
 
 
 
-module.exports ={CompanyModel, UserModel}
+module.exports ={CompanyModel}
