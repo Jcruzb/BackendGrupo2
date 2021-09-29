@@ -37,9 +37,31 @@ var CompanySchema = mongoose.Schema({
 
 })
 
+CompanySchema.statics.authenticate = function( ruc, password, callback ) {
+    CompanyModel.findOne({ruc: ruc})
+        .exec((err, company) => {
+            if(err) {
+                callback(err)
+            } else {
+                bcrypt.compare(password, company.password, (err, result) => {
+                    if ( result == true ) {
+                        return callback(err, company)
+                    } else {
+                        let err = new Error("Wrong password")
+                        err.status = 401
+                        callback(err)
+                    }
+                })
+            }
+        })
+}
+
+
+
+
 const CompanyModel = mongoose.model('company', CompanySchema)
 
-// const UserModel = mongoose.model('ruc', CompanySchema)
+
 
 
 

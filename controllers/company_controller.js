@@ -1,4 +1,4 @@
-const { CompanyModel  } = require("../db");
+const { CompanyModel  } = require("../models/db");
 
 const bcrypt = require('bcrypt')
 
